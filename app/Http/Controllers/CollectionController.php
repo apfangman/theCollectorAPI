@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use App\Http\Controllers\Controller;
+use App\Models\Collection as Collection;
 
 class CollectionController extends Controller
 {
