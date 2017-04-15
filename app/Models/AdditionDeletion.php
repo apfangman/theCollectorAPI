@@ -1,14 +1,16 @@
 <?php
 
+namespace App\Models;
+
 use Illuminate\Database\Eloquent\Model;
 
 class AdditionDeletion extends Model
 {
     protected $table = 'additionsDeletions';
-	
-	public $userId;
-	public $collectionId;
-	public $itemId;
-	public $deleted;
-	
+    
+    public $userId;
+    public $collectionId;
+    public $itemId;
+    public $deleted;
+    
 }
