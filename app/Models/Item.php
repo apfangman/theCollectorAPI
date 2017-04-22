@@ -8,34 +8,31 @@ class Item extends Model
 {
     protected $table = 'items';
     
-    public $itemId;
-    public $name;
-    public $picture;
-    public $storeLink;
-    public $buttonOneText;
-    public $buttonTwoText;
-    public $buttonThreeText;
-    
-    public static function getItems($aItemId)
-    {
-        return Item::where('itemId', '=', $aItemId)
-            ->get();
-    }
-    
+    protected $itemId;
+    protected $name;
+    protected $picture;
+    protected $storeLink;
+    protected $buttonOneText;
+    protected $buttonTwoText;
+    protected $buttonThreeText;
+    protected $deleted;
+
     //Still need to add in additions and deletions
     public static function getItemsForUserInCollection($aUserId, $aCollectionId)
     {
-        return Item::join('usersItems as ui', 'items.itemId', '=', 'ui.itemId')
-            ->join('collectionsItems as ci', 'items.itemId', '=', 'ci.itemId')
-            ->where('ui.userId', '=', $aUserId)
-            ->where('ci.collectionId', '=', $aCollectionId)
+        return Item::join('collectionsItems as ci', 'items.id', '=', 'ci.itemId')
+			->join('usersItems as ui', 'items.id', '=', 'ui.itemId')
+			->where('ui.deleted', '=', false)
+            ->where('ui.id', '=', $aUserId)
+            ->where('ci.id', '=', $aCollectionId)
             ->get();
     }
     
     public static function getItemsInCollection($aCollectionId)
     {
-        return Item::join('collectionsItems as ci', 'items.itemId.', '=', 'ci.itemId')
-            ->where('ci.collectionId', '=', $aCollectionId)
+        return Item::join('collectionsItems as ci', 'items.id.', '=', 'ci.id')
+            ->where('ci.id', '=', $aCollectionId)
+            ->where('items.userAdded', '=', false)
             ->get();
     }
 }
