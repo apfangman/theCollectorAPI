@@ -20,3 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('getCollections/{userId}', 'CollectionController@getCollectionsForUser');
 
 Route::get('getItemsForCollection/{collectionId}', 'ItemController@getItemsForCollection');
+
+Route::get('getItemsForSingleUserCollection/{collectionId}/{userId}', 'ItemController@getItemsForSingleUserCollection');
