@@ -13,22 +13,17 @@ class User extends Model
     protected $password;
     
     protected $visible = ['id', 'email', 'name'];
-    protected $appends = ['is_valid'];
 
     public static function getUser($aUserId)
     {
         return User::where('userId', '=', $aUserId)
-            ->get();
+            ->first();
     }
 
     public static function getUserByEmail($aUserEmail)
     {
         return User::where('email', '=', $aUserEmail)
-            ->get();
-    }
-
-    public static function getIsValidAttribute()
-    {
-        return true;
+            ->first()
+            ->makeVisible('password');
     }
 }

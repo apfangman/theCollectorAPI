@@ -6,7 +6,7 @@ use App\Models\User as User;
 
 class UserController extends Controller
 {
-    //Gets all the collections for a particular user
+    //Checks user login
     public function checkLogin($aUserEmail, $aUserPassword)
     {
         $lUser = User::getUserByEmail($aUserEmail);
