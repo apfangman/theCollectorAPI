@@ -22,3 +22,7 @@ Route::get('getCollections/{userId}', 'CollectionController@getCollectionsForUse
 Route::get('getItemsForCollection/{collectionId}', 'ItemController@getItemsForCollection');
 
 Route::get('getItemsForSingleUserCollection/{collectionId}/{userId}', 'ItemController@getItemsForSingleUserCollection');
+
+Route::get('checkLogin/{email}/{password}', 'UserController@checkLogin');
+
+
