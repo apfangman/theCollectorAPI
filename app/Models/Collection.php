@@ -24,4 +24,10 @@ class Collection extends Model
             ->where('uc.userId', '=', $aUserId)
             ->get();
     }
+
+    public static function findCollections($aSearchTerm)
+    {
+        return Collection::where('name', 'LIKE', $aSearchTerm)
+            ->get();
+    }
 }

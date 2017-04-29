@@ -23,7 +23,6 @@ class User extends Model
     public static function getUserByEmail($aUserEmail)
     {
         return User::where('email', '=', $aUserEmail)
-            ->first()
-            ->makeVisible('password');
+            ->first();
     }
 }

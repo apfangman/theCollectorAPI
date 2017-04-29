@@ -19,10 +19,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('getCollections/{userId}', 'CollectionController@getCollectionsForUser');
 
+Route::get('findCollections/{searchTerm}', 'CollectionController@findCollections');
+
 Route::get('getItemsForCollection/{collectionId}', 'ItemController@getItemsForCollection');
 
 Route::get('getItemsForSingleUserCollection/{collectionId}/{userId}', 'ItemController@getItemsForSingleUserCollection');
 
 Route::get('checkLogin/{email}/{password}', 'UserController@checkLogin');
-
-

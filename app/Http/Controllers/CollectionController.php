@@ -11,4 +11,9 @@ class CollectionController extends Controller
     {
         return Collection::getCollectionsForUser($aUserId)->toJson();
     }
+
+    public function findCollections($aSearchTerm)
+    {
+        return Collection::findCollections($aSearchTerm)->toJson();
+    }
 }
