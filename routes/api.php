@@ -21,6 +21,8 @@ Route::get('getCollections/{userId}', 'CollectionController@getCollectionsForUse
 
 Route::get('findCollections/{searchTerm}', 'CollectionController@findCollections');
 
+Route::get('addCollection/{collectionId}/{userId}', 'CollectionController@addCollection');
+
 Route::get('getItemsForCollection/{collectionId}', 'ItemController@getItemsForCollection');
 
 Route::get('getItemsForSingleUserCollection/{collectionId}/{userId}', 'ItemController@getItemsForSingleUserCollection');
