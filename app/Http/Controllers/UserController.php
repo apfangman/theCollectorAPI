@@ -12,7 +12,6 @@ class UserController extends Controller
     //Checks user login
     public function checkLogin($aUserEmail, $aUserPassword)
     {
-	Log::debug(Hash::make($aUserPassword));
         if(Auth::attempt(['email' => $aUserEmail, 'password' => $aUserPassword]))
         {
             return User::getUserByEmail($aUserEmail)->toJson();
