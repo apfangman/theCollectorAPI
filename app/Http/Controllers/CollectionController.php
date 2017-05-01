@@ -32,7 +32,7 @@ class CollectionController extends Controller
             ]);
 
         $lItems = Collection::join('collectionsItems as ci', 'collections.id', '=', 'ci.collectionId')
-            ->join('usersItems as ui', 'items.id', '=', 'ui.itemId');
+            ->join('usersItems as ui', 'items.id', '=', 'ui.itemId')
             ->where('ci.collectionId', '=', $aCollectionId);
 
         foreach($lItems as $iItem)
