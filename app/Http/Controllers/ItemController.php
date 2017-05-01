@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Collection as Collection;
+use App\Models\Item as Item;
 
 class ItemController extends Controller
 {

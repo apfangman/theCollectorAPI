@@ -25,6 +25,17 @@ class Item extends Model
 			->where('ui.deleted', '=', false)
             ->where('ui.id', '=', $aUserId)
             ->where('ci.id', '=', $aCollectionId)
+            ->select('items.id', 
+                'items.name', 
+                'items.picture', 
+                'ui.userId', 
+                'ci.collectionId', 
+                'items.buttonOne', 
+                'items.buttonTwo', 
+                'items.buttonThree', 
+                'ui.buttonOneChecked', 
+                'ui.buttonTwoChecked', 
+                'ui.buttonThreeChecked')
             ->get();
     }
     
