@@ -22,8 +22,8 @@ class Item extends Model
         return Item::join('collectionsItems as ci', 'items.id', '=', 'ci.itemId')
 			->join('usersItems as ui', 'items.id', '=', 'ui.itemId')
 			->where('ui.deleted', '=', false)
-            ->where('ui.id', '=', $aUserId)
-            ->where('ci.id', '=', $aCollectionId)
+            ->where('ui.userId', '=', $aUserId)
+            ->where('ci.collectionId', '=', $aCollectionId)
             ->select('items.id', 
                 'items.name', 
                 'items.picture', 
@@ -40,8 +40,8 @@ class Item extends Model
     
     public static function getItemsInCollection($aCollectionId)
     {
-        return Item::join('collectionsItems as ci', 'items.id.', '=', 'ci.id')
-            ->where('ci.id', '=', $aCollectionId)
+        return Item::join('collectionsItems as ci', 'items.id', '=', 'ci.itemId')
+            ->where('ci.collectionId', '=', $aCollectionId)
             ->where('items.userAdded', '=', false)
             ->get();
     }
