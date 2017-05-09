@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Collection as Collection;
+use Illuminate\Support\Facades\DB;
 
 class CollectionController extends Controller
 {
@@ -24,12 +25,20 @@ class CollectionController extends Controller
     {
         DB::beginTransaction();
 
-        DB::table('usersCollections as uc')
-            ->firstOrCreate(
-            [
-                'userId' => $aUserId,
-                'collectionId' => $aCollectionId
-            ]);
+        $lCollection = DB::table('usersCollections as uc')
+            ->where('userId', '=', $aUserId)
+            ->where('collectionId', '=', $aCollectionId)
+            ->first();
+
+        if($lCollection != null)
+        {
+            DB::table('usersCollections as uc')
+                ->insert(
+                [
+                    'userId' => $aUserId,
+                    'collectionId' => $aCollectionId
+                ]);
+        }
 
         $lItems = Collection::join('collectionsItems as ci', 'collections.id', '=', 'ci.collectionId')
             ->join('usersItems as ui', 'items.id', '=', 'ui.itemId')
@@ -37,16 +46,24 @@ class CollectionController extends Controller
 
         foreach($lItems as $iItem)
         {
-            DB::table('usersItems as ui')
-                ->firstOrCreate(
-                [
-                    'userId' => $aUserId,
-                    'itemId' => $iItem->itemId,
-                    'buttonOneChecked' => false,
-                    'buttonTwoChecked' => false,
-                    'buttonThreeChecked' => false,
-                    'deleted' => false
-                ]);
+            $lItem = DB::table('usersCollections as uc')
+                ->where('userId', '=', $aUserId)
+                ->where('itemId', '=', $iItem->itemId)
+                ->first();
+
+            if($lItem != null)
+            {
+                DB::table('usersItems as ui')
+                    ->insert(
+                    [
+                        'userId' => $aUserId,
+                        'itemId' => $iItem->itemId,
+                        'buttonOneChecked' => false,
+                        'buttonTwoChecked' => false,
+                        'buttonThreeChecked' => false,
+                        'deleted' => false
+                    ]);
+            }            
         }
         
         DB::commit();
