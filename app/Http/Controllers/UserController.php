@@ -26,7 +26,11 @@ class UserController extends Controller
         $lUser = User::where('email', '=', $aEmail)->get();
         if($lUser != null)
         {
-            return User::createUser($aName, $aEmail, $aPassword)->tojson();
+            $lValidInsert = User::createUser($aName, $aEmail, $aPassword);
+            if($lValidInsert)
+            {
+                return $lUser;
+            }
         }
         return;
     }

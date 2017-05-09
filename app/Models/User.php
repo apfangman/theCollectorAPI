@@ -29,12 +29,19 @@ class User extends Model
 
     public static function createUser($aUserName, $aUserEmail, $aUserPassword)
     {
-        $aUserPassword = Hash::make($aUserPassword);
-        return User::insert(
-        [
-            'name' => $aUserName,
-            'email' => $aUserEmail,
-            'password' => $aUserPassword
-        ]);
+        try
+        {
+            $aUserPassword = Hash::make($aUserPassword);
+            return User::insert(
+            [
+                'name' => $aUserName,
+                'email' => $aUserEmail,
+                'password' => $aUserPassword
+            ]);
+        }
+        catch(\Illuminate\Database\QueryException $e)
+        {
+            return false;
+        }
     }
 }
