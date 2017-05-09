@@ -70,4 +70,22 @@ class CollectionController extends Controller
 
         return "Collection Added!";
     }
+
+    public function createCollection($aCollectionName, $aUserId, $aButtonOneText, $aButtonTwoText = "", $aButtonThreeText = "")
+    {
+        DB::beginTransaction();
+
+        Collection::createCollection($aCollectionName, $aButtonOneText, $aButtonTwoText, $aButtonThreeText);
+        $lCreatedCollection = Collection::last();
+        DB::table('usersCollections')
+            ->insert(
+                [
+                    'userId' => $aUserId,
+                    'collectionId' => $lCreatedCollection->id
+                ]
+            );
+
+        DB::commit();
+        return $lCreatedCollection;
+    }
 }

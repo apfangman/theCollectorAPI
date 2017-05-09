@@ -30,4 +30,15 @@ class Collection extends Model
         return Collection::where('name', 'LIKE', $aSearchTerm)
             ->get();
     }
+
+    public static function createCollection($aCollectionName, $aButtonOneText, $aButtonTwoText = "", $aButtonThreeText = "")
+    {
+        return Collection::insert(
+        [
+            'name' => $aUserName,
+            'buttonOne' => $aButtonOneText,
+            'buttonTwo' => $aButtonTwoText,
+            'buttonThree' => $aButtonThreeText
+        ]);
+    }
 }

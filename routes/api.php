@@ -30,3 +30,9 @@ Route::get('getItemsForSingleUserCollection/{collectionId}/{userId}', 'ItemContr
 Route::get('checkLogin/{email}/{password}', 'UserController@checkLogin');
 
 Route::get('registerUser/{name}/{email}/{password}', 'UserController@registerUser');
+
+Route::get('createCollection/{collectionName}/{usedId}/{buttonOneText}', 'CollectionController@createCollection');
+
+Route::get('createCollection/{collectionName}/{usedId}/{buttonOneText}/{buttonTwoText}', 'CollectionController@createCollection');
+
+Route::get('createCollection/{collectionName}/{usedId}/{buttonOneText}/{buttonTwoText}/{buttonTwoText}', 'CollectionController@createCollection');
