@@ -27,6 +27,7 @@ class UserController extends Controller
         if($lUser != null)
         {
             $lValidInsert = User::createUser($aName, $aEmail, $aPassword);
+            $lUser = User::where('email', '=', $aEmail)->get();
             if($lValidInsert)
             {
                 return $lUser;
