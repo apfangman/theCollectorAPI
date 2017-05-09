@@ -30,7 +30,7 @@ class CollectionController extends Controller
             ->where('collectionId', '=', $aCollectionId)
             ->first();
 
-        if($lCollection != null)
+        if($lCollection == null)
         {
             DB::table('usersCollections as uc')
                 ->insert(
@@ -41,7 +41,6 @@ class CollectionController extends Controller
         }
 
         $lItems = Collection::join('collectionsItems as ci', 'collections.id', '=', 'ci.collectionId')
-            ->join('usersItems as ui', 'items.id', '=', 'ui.itemId')
             ->where('ci.collectionId', '=', $aCollectionId);
 
         foreach($lItems as $iItem)
@@ -51,7 +50,7 @@ class CollectionController extends Controller
                 ->where('itemId', '=', $iItem->itemId)
                 ->first();
 
-            if($lItem != null)
+            if($lItem == null)
             {
                 DB::table('usersItems as ui')
                     ->insert(
