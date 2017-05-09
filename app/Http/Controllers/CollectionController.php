@@ -40,8 +40,9 @@ class CollectionController extends Controller
                 ]);
         }
 
-        $lItems = Collection::join('collectionsItems as ci', 'collections.id', '=', 'ci.collectionId')
+        $lItems = Collection::join('items as i', 'collections.id', '=', 'i.collectionId')
             ->where('ci.collectionId', '=', $aCollectionId)
+            ->select('i.id as itemId')
             ->get();
 
         foreach($lItems as $iItem)
