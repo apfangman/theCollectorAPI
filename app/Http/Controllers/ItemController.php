@@ -12,8 +12,8 @@ class ItemController extends Controller
     }
 
     //Gets all the collections for a particular user
-    public function getItemsForSingleUserCollection($aUserId, $aCollectionId)
+    public function getItemsForSingleUserCollection($aCollection, $aUserId)
     {
-        return Item::getItemsForUserInCollection($aUserId, $aCollectionId)->toJson();
+        return Item::getItemsForUserInCollection($aCollectionId, $aUserId)->toJson();
     }
 }

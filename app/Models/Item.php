@@ -17,7 +17,7 @@ class Item extends Model
     protected $buttonThreeText;
     protected $deleted;
 
-    public static function getItemsForUserInCollection($aUserId, $aCollectionId)
+    public static function getItemsForUserInCollection($aCollectionId, $aUserId)
     {
         return Item::join('collectionsItems as ci', 'items.id', '=', 'ci.itemId')
 			->join('usersItems as ui', 'items.id', '=', 'ui.itemId')
