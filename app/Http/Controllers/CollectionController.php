@@ -41,11 +41,12 @@ class CollectionController extends Controller
         }
 
         $lItems = Collection::join('collectionsItems as ci', 'collections.id', '=', 'ci.collectionId')
-            ->where('ci.collectionId', '=', $aCollectionId);
+            ->where('ci.collectionId', '=', $aCollectionId)
+            ->get();
 
         foreach($lItems as $iItem)
         {
-            $lItem = DB::table('usersCollections as uc')
+            $lItem = DB::table('usersItems as uc')
                 ->where('userId', '=', $aUserId)
                 ->where('itemId', '=', $iItem->itemId)
                 ->first();
