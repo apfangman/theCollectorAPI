@@ -41,7 +41,7 @@ class CollectionController extends Controller
         }
 
         $lItems = Collection::join('items as i', 'collections.id', '=', 'i.collectionId')
-            ->where('ci.collectionId', '=', $aCollectionId)
+            ->where('i.collectionId', '=', $aCollectionId)
             ->select('i.id as itemId')
             ->get();
 
