@@ -21,6 +21,7 @@ class Item extends Model
     {
         return Item::join('collectionsItems as ci', 'items.id', '=', 'ci.itemId')
 			->join('usersItems as ui', 'items.id', '=', 'ui.itemId')
+            ->join('collections as c', 'ci.collectionId', '=', 'c.id')
 			->where('ui.deleted', '=', false)
             ->where('ui.userId', '=', $aUserId)
             ->where('ci.collectionId', '=', $aCollectionId)
@@ -29,9 +30,9 @@ class Item extends Model
                 'items.picture', 
                 'ui.userId', 
                 'ci.collectionId', 
-                'items.buttonOne', 
-                'items.buttonTwo', 
-                'items.buttonThree', 
+                'c.buttonOne', 
+                'c.buttonTwo', 
+                'c.buttonThree', 
                 'ui.buttonOneChecked', 
                 'ui.buttonTwoChecked', 
                 'ui.buttonThreeChecked')
@@ -41,8 +42,17 @@ class Item extends Model
     public static function getItemsInCollection($aCollectionId)
     {
         return Item::join('collectionsItems as ci', 'items.id', '=', 'ci.itemId')
+            ->join('collections as c', 'ci.collectionId', '=', 'c.id')
             ->where('ci.collectionId', '=', $aCollectionId)
             ->where('items.userAdded', '=', false)
+            ->select('items.id', 
+                'items.name', 
+                'items.picture', 
+                'items.storeLink',
+                'ci.collectionId', 
+                'c.buttonOne', 
+                'c.buttonTwo', 
+                'c.buttonThree')
             ->get();
     }
 }
