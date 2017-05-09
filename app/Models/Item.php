@@ -19,16 +19,16 @@ class Item extends Model
 
     public static function getItemsForUserInCollection($aCollectionId, $aUserId)
     {
-        return Item::->join('usersItems as ui', 'items.id', '=', 'ui.itemId')
+        return Item::join('usersItems as ui', 'items.id', '=', 'ui.itemId')
             ->join('collections as c', 'items.collectionId', '=', 'c.id')
 			->where('ui.deleted', '=', false)
             ->where('ui.userId', '=', $aUserId)
-            ->where('i.collectionId', '=', $aCollectionId)
+            ->where('items.collectionId', '=', $aCollectionId)
             ->select('items.id', 
                 'items.name', 
                 'items.picture', 
                 'ui.userId', 
-                'i.collectionId', 
+                'items.collectionId', 
                 'c.buttonOne', 
                 'c.buttonTwo', 
                 'c.buttonThree', 
@@ -40,14 +40,14 @@ class Item extends Model
     
     public static function getItemsInCollection($aCollectionId)
     {
-        return Item::->join('collections as c', 'items.collectionId', '=', 'c.id')
-            ->where('i.collectionId', '=', $aCollectionId)
+        return Item::join('collections as c', 'items.collectionId', '=', 'c.id')
+            ->where('items.collectionId', '=', $aCollectionId)
             ->where('items.userAdded', '=', false)
             ->select('items.id', 
                 'items.name', 
                 'items.picture', 
                 'items.storeLink',
-                'i.collectionId', 
+                'items.collectionId', 
                 'c.buttonOne', 
                 'c.buttonTwo', 
                 'c.buttonThree')
