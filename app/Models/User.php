@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Model
 {
@@ -30,11 +31,10 @@ class User extends Model
     {
         $aUserPassword = Hash::make($aUserPassword);
         return User::insert(
-            [
-                'name' => $aUserName,
-                'email' => $aUserEmail,
-                'password' => $aUserPassword
-            ]
-        )
+        [
+            'name' => $aUserName,
+            'email' => $aUserEmail,
+            'password' => $aUserPassword
+        ]);
     }
 }
