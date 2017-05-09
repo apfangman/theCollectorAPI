@@ -19,4 +19,15 @@ class UserController extends Controller
 
         return "";
     }
+
+    //Registers user
+    public function registerUser($aName, $aEmail, $aPassword)
+    {
+        $lUser = User::where('email', '=', $aEmail)->get();
+        if($lUser != null)
+        {
+            return User::createUser($aName, $aEmail, $aPassword)->tojson();
+        }
+        return;
+    }
 }

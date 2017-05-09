@@ -25,4 +25,16 @@ class User extends Model
         return User::where('email', '=', $aUserEmail)
             ->first();
     }
+
+    public static function createUser($aUserName, $aUserEmail, $aUserPassword)
+    {
+        $aUserPassword = Hash::make($aUserPassword);
+        return User::insert(
+            [
+                'name' => $aUserName,
+                'email' => $aUserEmail,
+                'password' => $aUserPassword
+            ]
+        )
+    }
 }
