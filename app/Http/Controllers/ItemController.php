@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item as Item;
+use Illuminate\Support\Facades\DB;
 
 class ItemController extends Controller
 {
@@ -19,7 +20,9 @@ class ItemController extends Controller
 
     public function addItemToCollection($aItemName, $aCollectionId, $aUserId)
     {
-        Item::addItemToCollection($aItemName, $aCollectionId);
+        DB::beginTransaction();
+
+        Item::addItemToCollection($aItemName);
 
         $lItem = Item::orderBy('id', 'desc')
             ->first();
@@ -34,10 +37,14 @@ class ItemController extends Controller
                     'buttonThreeChecked' => false,
                     'deleted' => false
                 ]);
+
+        DB::commit();
     }
 
     public function addItemToCollectionForUser($aItemName, $aCollectionId, $aUserId)
     {
+        DB::beginTransaction();
+
         Item::addItemToCollectionForUser($aItemName, $aCollectionId);
 
         $lItem = Item::orderBy('id', 'desc')
@@ -53,5 +60,7 @@ class ItemController extends Controller
                     'buttonThreeChecked' => false,
                     'deleted' => false
                 ]);
+
+        DB::commit();
     }
 }

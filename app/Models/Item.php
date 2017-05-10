@@ -54,25 +54,27 @@ class Item extends Model
             ->get();
     }
 
-    public function addItemToCollection($aItemName, $aCollectionId)
+    public static function addItemToCollection($aItemName, $aCollectionId)
     {
         return Item::insert(
             [
                 'name' => $aItemName,
                 'picture' => 'filepath',
                 'storeLink' => 'link',
-                'userAdded' => false
+                'userAdded' => false,
+                'collectionId' => $aCollectionId
             ]);
     }
 
-    public function addItemToCollectionForUser($aItemName, $aCollectionId)
+    public static function addItemToCollectionForUser($aItemName, $aCollectionId)
     {
         return Item::insert(
             [
                 'name' => $aItemName,
                 'picture' => 'filepath',
                 'storeLink' => 'link',
-                'userAdded' => true
+                'userAdded' => true,
+                'collectionId' => $aCollectionId
             ]);
     }
 }
