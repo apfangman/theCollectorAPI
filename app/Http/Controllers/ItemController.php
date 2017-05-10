@@ -16,4 +16,42 @@ class ItemController extends Controller
     {
         return Item::getItemsForUserInCollection($aCollectionId, $aUserId)->toJson();
     }
+
+    public function addItemToCollection($aItemName, $aCollectionId, $aUserId)
+    {
+        Item::addItemToCollection($aItemName, $aCollectionId);
+
+        $lItem = Item::orderBy('id', 'desc')
+            ->first();
+
+        DB::table('usersItems as ui')
+            ->insert(
+                [
+                    'userId' => $aUserId,
+                    'itemId' => $lItem->id,
+                    'buttonOneChecked' => false,
+                    'buttonTwoChecked' => false,
+                    'buttonThreeChecked' => false,
+                    'deleted' => false
+                ]);
+    }
+
+    public function addItemToCollectionForUser($aItemName, $aCollectionId, $aUserId)
+    {
+        Item::addItemToCollectionForUser($aItemName, $aCollectionId);
+
+        $lItem = Item::orderBy('id', 'desc')
+            ->first();
+
+        DB::table('usersItems as ui')
+            ->insert(
+                [
+                    'userId' => $aUserId,
+                    'itemId' => $lItem->id,
+                    'buttonOneChecked' => false,
+                    'buttonTwoChecked' => false,
+                    'buttonThreeChecked' => false,
+                    'deleted' => false
+                ]);
+    }
 }

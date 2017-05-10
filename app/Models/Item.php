@@ -53,4 +53,26 @@ class Item extends Model
                 'c.buttonThree')
             ->get();
     }
+
+    public function addItemToCollection($aItemName, $aCollectionId)
+    {
+        return Item::insert(
+            [
+                'name' => $aItemName,
+                'picture' => 'filepath',
+                'storeLink' => 'link',
+                'userAdded' => false
+            ]);
+    }
+
+    public function addItemToCollectionForUser($aItemName, $aCollectionId)
+    {
+        return Item::insert(
+            [
+                'name' => $aItemName,
+                'picture' => 'filepath',
+                'storeLink' => 'link',
+                'userAdded' => true
+            ]);
+    }
 }
