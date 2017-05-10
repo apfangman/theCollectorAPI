@@ -35,7 +35,7 @@ Route::get('createCollection/{collectionName}/{usedId}/{buttonOneText}', 'Collec
 
 Route::get('createCollection/{collectionName}/{usedId}/{buttonOneText}/{buttonTwoText}', 'CollectionController@createCollection');
 
-Route::get('createCollection/{collectionName}/{usedId}/{buttonOneText}/{buttonTwoText}/{buttonTwoText}', 'CollectionController@createCollection');
+Route::get('createCollection/{collectionName}/{usedId}/{buttonOneText}/{buttonTwoText}/{buttonThreeText}', 'CollectionController@createCollection');
 
 Route::get('addItemToCollection/{itemName}/{collectionId}/{userId}', 'ItemController@addItemToCollection');
 
