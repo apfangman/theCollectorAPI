@@ -22,7 +22,7 @@ class ItemController extends Controller
     {
         DB::beginTransaction();
 
-        Item::addItemToCollection($aItemName);
+        Item::addItemToCollection($aItemName, $aCollectionId);
 
         $lItem = Item::orderBy('id', 'desc')
             ->first();
