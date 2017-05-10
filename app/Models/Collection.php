@@ -35,7 +35,7 @@ class Collection extends Model
     {
         return Collection::insert(
         [
-            'name' => $aUserName,
+            'name' => $aCollectionName,
             'buttonOne' => $aButtonOneText,
             'buttonTwo' => $aButtonTwoText,
             'buttonThree' => $aButtonThreeText
