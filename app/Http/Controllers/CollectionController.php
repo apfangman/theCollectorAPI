@@ -77,7 +77,9 @@ class CollectionController extends Controller
         DB::beginTransaction();
 
         Collection::createCollection($aCollectionName, $aButtonOneText, $aButtonTwoText, $aButtonThreeText);
-        $lCreatedCollection = Collection::last();
+        $lCreatedCollection = Collection::orderBy('id', 'desc')
+            ->first();
+            
         DB::table('usersCollections')
             ->insert(
                 [
