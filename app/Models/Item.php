@@ -35,6 +35,7 @@ class Item extends Model
                 'ui.buttonOneChecked', 
                 'ui.buttonTwoChecked', 
                 'ui.buttonThreeChecked')
+            ->orderBy('items.name')
             ->get();
     }
     
