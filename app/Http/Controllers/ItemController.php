@@ -66,10 +66,10 @@ class ItemController extends Controller
 
     public function deleteItemFromCollectionForUser($aItemId, $aUserId)
     {
-        DB::table('usersItems as ui')
-            ->where('ui.userId', '=', $aUserId)
-            ->where('ui.itemId', '=', $aItemId)
-            ->update(['ui.deleted' => true]);
+        DB::table('usersItems')
+            ->where('userId', '=', $aUserId)
+            ->where('itemId', '=', $aItemId)
+            ->update(['deleted' => true]);
 
         return "Item Deleted!";
     }
