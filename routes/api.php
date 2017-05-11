@@ -41,6 +41,6 @@ Route::get('addItemToCollection/{itemName}/{collectionId}/{userId}', 'ItemContro
 
 Route::get('addItemToCollectionForUser/{itemName}/{collectionId}/{userId}', 'ItemController@addItemToCollectionForUser');
 
-Route::get('deleteItemForCollectionForUser/{itemId}/{collectionId}/{userId}', 'ItemController@deleteItemFromCollectionForUser');
+Route::get('deleteItemForCollectionForUser/{itemId}/{userId}', 'ItemController@deleteItemFromCollectionForUser');
 
 Route::get('updateItem/{itemId}/{userId}/{button}', 'ItemController@updateItem');
