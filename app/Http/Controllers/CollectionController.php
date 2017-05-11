@@ -42,6 +42,7 @@ class CollectionController extends Controller
 
         $lItems = Collection::join('items as i', 'collections.id', '=', 'i.collectionId')
             ->where('i.collectionId', '=', $aCollectionId)
+            ->where('i.userAdded', '=', false)
             ->select('i.id as itemId')
             ->get();
 
