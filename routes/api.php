@@ -40,3 +40,7 @@ Route::get('createCollection/{collectionName}/{usedId}/{buttonOneText}/{buttonTw
 Route::get('addItemToCollection/{itemName}/{collectionId}/{userId}', 'ItemController@addItemToCollection');
 
 Route::get('addItemToCollectionForUser/{itemName}/{collectionId}/{userId}', 'ItemController@addItemToCollectionForUser');
+
+Route::get('deleteItemForCollectionForUser/{itemId}/{collectionId}/{userId}', 'ItemController@deleteItemFromCollectionForUser');
+
+Route::get('updateItem/{itemId}/{userId}/{button}', 'ItemController@updateItem');

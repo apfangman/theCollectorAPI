@@ -63,4 +63,47 @@ class ItemController extends Controller
 
         DB::commit();
     }
+
+    public function deleteItemFromCollectionForUser($aItemId, $aUserId)
+    {
+        return DB::table('usersItems as ui')
+            ->where('ui.userId', '=', $aUserId)
+            ->where('ui.itemId', '=', $aItemId)
+            ->update('ui.deleted' => true);
+    }
+
+    public function updateItem($aItemId, $aUserId, $aButtonChecked)
+    {
+        DB::beginTransaction();
+
+        $lItem = DB::table('usersItems as ui')
+            ->where('ui.userId', '=', $aUserId)
+            ->where('ui.itemId', '=', $aItemId)
+            ->first();
+
+        if($aButtonChecked == "1")
+        {
+            $aButtonChecked = 'buttonOneChecked';
+            $lFlag = $lItem->buttonOneChecked;
+        }
+        elseif($aButtonChecked == "2")
+        {
+            $aButtonChecked = 'buttonTwoChecked';
+            $lFlag = $lItem->buttonTwoChecked;
+        }
+        else
+        {
+            $aButtonChecked = 'buttonThreeChecked';
+            $lFlag = $lItem->buttonThreeChecked;
+        }
+
+        DB::table('usersItems as ui')
+            ->where('itemId', '=', $aItemId)
+            ->where('userId', '=', $aUserId)
+            ->update($aButtonChecked => !);
+
+        DB::commit();
+
+        return "Item Updated!";
+    }
 }
