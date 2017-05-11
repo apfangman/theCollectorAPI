@@ -69,7 +69,7 @@ class ItemController extends Controller
         return DB::table('usersItems as ui')
             ->where('ui.userId', '=', $aUserId)
             ->where('ui.itemId', '=', $aItemId)
-            ->update('ui.deleted' => true);
+            ->update(['ui.deleted' => true]);
     }
 
     public function updateItem($aItemId, $aUserId, $aButtonChecked)
@@ -100,7 +100,7 @@ class ItemController extends Controller
         DB::table('usersItems as ui')
             ->where('itemId', '=', $aItemId)
             ->where('userId', '=', $aUserId)
-            ->update($aButtonChecked => !);
+            ->update([$aButtonChecked => !$lFlag]);
 
         DB::commit();
 
