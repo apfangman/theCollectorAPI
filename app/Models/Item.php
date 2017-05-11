@@ -61,7 +61,7 @@ class Item extends Model
         return Item::insert(
             [
                 'name' => $aItemName,
-                'picture' => 'filepath',
+                'picture' => '',
                 'storeLink' => 'link',
                 'userAdded' => false,
                 'collectionId' => $aCollectionId
@@ -73,7 +73,7 @@ class Item extends Model
         return Item::insert(
             [
                 'name' => $aItemName,
-                'picture' => 'filepath',
+                'picture' => '',
                 'storeLink' => 'link',
                 'userAdded' => true,
                 'collectionId' => $aCollectionId
