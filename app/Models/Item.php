@@ -52,6 +52,7 @@ class Item extends Model
                 'c.buttonOne', 
                 'c.buttonTwo', 
                 'c.buttonThree')
+            ->orderBy('items.name')
             ->get();
     }
 
