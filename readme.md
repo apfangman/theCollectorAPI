@@ -8,4 +8,4 @@ The Collector API utilizes the Laravel framework and is intended for use with a 
 
 ## Usage
 
-In order to access any of the routes currently set up, the URL form is: <ip address of API>/api/<route name>/<argument 1>/<argument 2>/.../<argument n>   
+In order to access any of the routes currently set up, the URL form is: \<IP address of API\>/api/\<route name\>/\<argument 1\>/\<argument 2\>/.../\<argument n\>   
